@@ -9,12 +9,9 @@
   <p></p>
 
   <p class="container">
-    <kbc-datepicker bind:this={element} id="ttt" isValid="false">
+    <kbc-datepicker bind:this={element} id="ttt">
     </kbc-datepicker>
   </p>
-  <input bind:value={value} />
-  <button on:click={value=element.value}>get value</button>
-  {value}
 </main>
 
 <style>
