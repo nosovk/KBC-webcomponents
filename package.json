@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.1",
-    "@tsconfig/svelte": "^4.0.1",
+    "@tsconfig/svelte": "^5.0.0",
     "svelte": "^4.0.0-next.1",
     "svelte-check": "^3.4.3",
     "svelte-preprocess": "^5.0.4",
