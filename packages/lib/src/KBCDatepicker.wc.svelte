@@ -10,7 +10,6 @@
     import { createEventDispatcher } from 'svelte';
     import { TelInput, normalizedCountries, isSelected, clickOutsideAction } from "svelte-tel-input";
 
-    let ref: HTMLDivElement;
     export let clickOutside = true;
     export let closeOnClick = true;
     export let disabled = false;
@@ -96,6 +95,9 @@
     const onChange = (selectedCountry) => {
         dispatch('change', { option: selectedCountry });
     };
+
+    // below code required for webcomponent integration
+    let ref: HTMLDivElement;
     const updateParent = function (val) {
         if (ref?.getRootNode()?.host) {
             console.log("host", ref.getRootNode().host, valid)
