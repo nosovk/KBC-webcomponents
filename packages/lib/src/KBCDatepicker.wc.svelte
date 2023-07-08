@@ -8,7 +8,8 @@
 
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
-    import { TelInput, normalizedCountries, isSelected, clickOutsideAction } from "svelte-tel-input";
+    import { TelInput, normalizedCountries, isSelected, clickOutsideAction } from 'svelte-tel-input';
+    import 'svelte-tel-input/styles/flags.css';
 
     export let clickOutside = true;
     export let closeOnClick = true;
@@ -109,15 +110,15 @@
 </script>
 
 <div bind:this={ref}
-     class="flex relative rounded-lg {valid
-		? ``
-		: ` ring-pink-500 dark:ring-pink-500 ring-1 focus-within:ring-offset-1 focus-within:ring-offset-pink-500/50 focus-within:ring-1`}"
+     class="phone-input-wrapper {valid
+		? `input-valid`
+		: `input-invalid`}"
 >
-    <div class="flex" use:clickOutsideAction={closeOnClickOutside}>
+    <div class="country-select-wrapper" use:clickOutsideAction={closeOnClickOutside}>
         <button
-                id="states-button"
-                data-dropdown-toggle="dropdown-states"
-                class="relative flex-shrink-0 overflow-hidden z-10 whitespace-nowrap inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600"
+                id="countries-button"
+                data-dropdown-toggle="dropdown-countries"
+                class="select-btn"
                 type="button"
                 role="combobox"
                 aria-controls="dropdown-countries"
@@ -126,17 +127,16 @@
                 on:click={toggleDropDown}
         >
             {#if selectedCountry && selectedCountry !== null}
-                <div class="inline-flex items-center text-left">
-                    <span class="flag flag-{selectedCountry.toLowerCase()} flex-shrink-0 mr-3" />
-                    <span class="text-gray-600 dark:text-gray-400">+{selectedCountryDialCode}</span
-                    >
+                <div class="country-select-inner">
+                    <span class="flag flag-{selectedCountry.toLowerCase()}" />
+                    <span>+{selectedCountryDialCode}</span>
                 </div>
             {:else}
                 Please select
             {/if}
             <svg
                     aria-hidden="true"
-                    class="ml-1 w-4 h-4 {isOpen ? 'rotate-180' : ''}"
+                    class="{isOpen ? 'rotate-180' : ''}"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@
         {#if isOpen}
             <div
                     id="dropdown-countries"
-                    class="absolute z-10 max-w-fit bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 overflow-hidden translate-y-11"
+                    class="select-dropdown"
                     data-popper-reference-hidden=""
                     data-popper-escaped=""
                     data-popper-placement="bottom"
@@ -160,14 +160,13 @@
                     tabindex="-1"
             >
                 <div
-                        class="text-sm text-gray-700 dark:text-gray-200 max-h-48 overflow-y-auto"
+                        class="dropdown-inner"
                         aria-labelledby="countries-button"
                         role="listbox"
                 >
                     <input
                             aria-autocomplete="list"
                             type="text"
-                            class="px-4 py-2 text-gray-900 focus:outline-none w-full sticky top-0"
                             bind:value={searchText}
                             placeholder={searchPlaceholder}
                     />
@@ -177,21 +176,18 @@
                             <button
                                     value={country.iso2}
                                     type="button"
-                                    class="inline-flex py-2 px-4 w-full text-sm hover:bg-gray-100 dark:hover:bg-gray-600
-                             active:bg-gray-800 dark:active:bg-gray-800 overflow-hidden
+                                    class="country-select-item
                             {isActive
-									? 'bg-gray-600 dark:text-white'
-									: 'dark:hover:text-white dark:text-gray-400'}"
+									? 'country-active'
+									: ''}"
                                     on:click={(e) => {
 									handleSelect(country.iso2, e);
 								}}
                             >
-                                <div class="inline-flex items-center text-left">
-									<span
-                                            class="flag flag-{country.iso2.toLowerCase()} flex-shrink-0 mr-3"
-                                    />
-                                    <span class="mr-2">{country.name}</span>
-                                    <span class="text-gray-500">+{country.dialCode}</span>
+                                <div class="country-select-item-inner">
+                                    <span class="flag flag-{country.iso2.toLowerCase()}" />
+                                    <span>{country.name}</span>
+                                    <span>+{country.dialCode}</span>
                                 </div>
                             </button>
                         </div>
@@ -209,251 +205,93 @@
             bind:valid
             {options}
             required={true}
-            class="text-sm rounded-r-lg block w-full p-2.5 focus:outline-none border border-gray-300 border-l-gray-100 dark:border-l-gray-700 dark:border-gray-600 bg-gray-50 dark:bg-gray-700
-        dark:placeholder-gray-400 dark:text-white text-gray-900"
     />
 </div>
 
 <style>
-    * {
-        --tw-border-spacing-x: 0;
-        --tw-border-spacing-y: 0;
-        --tw-translate-x: 0;
-        --tw-translate-y: 0;
-        --tw-rotate: 0;
-        --tw-skew-x: 0;
-        --tw-skew-y: 0;
-        --tw-scale-x: 1;
-        --tw-scale-y: 1;
-        --tw-pan-x: ;
-        --tw-pan-y: ;
-        --tw-pinch-zoom: ;
-        --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position: ;
-        --tw-gradient-via-position: ;
-        --tw-gradient-to-position: ;
-        --tw-ordinal: ;
-        --tw-slashed-zero: ;
-        --tw-numeric-figure: ;
-        --tw-numeric-spacing: ;
-        --tw-numeric-fraction: ;
-        --tw-ring-inset: ;
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: rgb(59 130 246 / 0.5);
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 #0000;
-        --tw-shadow: 0 0 #0000;
-        --tw-shadow-colored: 0 0 #0000;
-        --tw-blur: ;
-        --tw-brightness: ;
-        --tw-contrast: ;
-        --tw-grayscale: ;
-        --tw-hue-rotate: ;
-        --tw-invert: ;
-        --tw-saturate: ;
-        --tw-sepia: ;
-        --tw-drop-shadow: ;
-        --tw-backdrop-blur: ;
-        --tw-backdrop-brightness: ;
-        --tw-backdrop-contrast: ;
-        --tw-backdrop-grayscale: ;
-        --tw-backdrop-hue-rotate: ;
-        --tw-backdrop-invert: ;
-        --tw-backdrop-opacity: ;
-        --tw-backdrop-saturate: ;
-        --tw-backdrop-sepia: ;
+    .phone-input-wrapper {
+        position: relative;
+        display: flex;
+        border-radius: 8px;
     }
-    .flex {
+
+    .country-select-wrapper {
         display: flex;
     }
-    .rounded-lg {
-        border-radius: 0.5rem;
-    }
-    .relative {
+
+    .select-btn {
         position: relative;
-    }
-    .text-gray-500 {
-        --tw-text-opacity: 1;
-        color: rgb(107 114 128 / var(--tw-text-opacity));
-    }
-    .font-medium {
-        font-weight: 500;
-    }
-    .text-sm {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
-    .text-center {
-        text-align: center;
-    }
-    .py-2\.5 {
+        overflow: hidden;
+        z-index: 10;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
         padding-top: 0.625rem;
         padding-bottom: 0.625rem;
-    }
-    .px-4 {
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-    .bg-gray-100 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-    }
-    .border-gray-300 {
-        --tw-border-opacity: 1;
-        border-color: rgb(209 213 219 / var(--tw-border-opacity));
-    }
-    .flex-shrink-0 {
-        flex-shrink: 0;
-    }
-    .mr-3 {
-        margin-right: 0.75rem;
-    }
-    .text-left {
-        text-align: left;
-    }
-    .items-center {
-        align-items: center;
-    }
-    .inline-flex {
-        display: inline-flex;
-    }
-    .text-sm {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
-    .border {
-        border-width: 1px;
-    }
-    .rounded-l-lg {
+        text-align: center;
         border-top-left-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
     }
-    .whitespace-nowrap {
-        white-space: nowrap;
-    }
-    .overflow-hidden {
-        overflow: hidden;
-    }
-    .items-center {
-        align-items: center;
-    }
-    .flex-shrink-0 {
-        flex-shrink: 0;
-    }
-    .inline-flex {
-        display: inline-flex;
-    }
-    .z-10 {
-        z-index: 10;
-    }
-    .relative {
-        position: relative;
-    }
-    button, [type='button'], [type='reset'], [type='submit'] {
-        -webkit-appearance: button;
-        background-color: transparent;
-        background-image: none;
-    }
-    input, button {
-        font-size: inherit;
-        font-family: inherit;
-    }
-    button, [role="button"] {
-        cursor: pointer;
-    }
-    button, select {
-        text-transform: none;
-    }
-    button, input, optgroup, select, textarea {
-        font-family: inherit;
-        font-size: 100%;
-        font-weight: inherit;
-        line-height: inherit;
-        color: inherit;
-        margin: 0;
-        padding: 0;
-    }
-    .text-gray-900 {
-        --tw-text-opacity: 1;
-        color: rgb(17 24 39 / var(--tw-text-opacity));
-    }
-    .text-sm {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
-    .p-2\.5 {
-        padding: 0.625rem;
-    }
-    .bg-gray-50 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-    }
-    .border-l-gray-100 {
-        --tw-border-opacity: 1;
-        border-left-color: rgb(243 244 246 / var(--tw-border-opacity));
-    }
-    .border-gray-300 {
-        --tw-border-opacity: 1;
-        border-color: rgb(209 213 219 / var(--tw-border-opacity));
-    }
-    .border {
-        border-width: 1px;
-    }
-    .rounded-r-lg {
-        border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-    }
-    .w-full {
-        width: 100%;
-    }
-    .block {
-        display: block;
-    }
-    .text-left {
-        text-align: left;
-    }
-    .items-center {
-        align-items: center;
-    }
-    .inline-flex {
-        display: inline-flex;
-    }
-    .w-4 {
+    .select-btn svg {
+        color: black;
+        height: 1rem;
         width: 1rem;
     }
-    .h-4 {
-        height: 1rem;
+
+    .select-dropdown {
+        position: absolute;
+        max-width: fit-content;
+        background-color: white;
+        border-radius: 4px;
     }
-    .ml-1 {
-        margin-left: 0.25rem;
-    }
-    img, svg, video, canvas, audio, iframe, embed, object {
-        display: block;
-        vertical-align: middle;
-    }
-    .text-gray-500 {
-        --tw-text-opacity: 1;
-        color: rgb(107 114 128 / var(--tw-text-opacity));
+    .dropdown-inner {
+        overflow-y: auto;
+        max-height: 200px;
     }
 
-    .mr-2 {
-        margin-right: 0.5rem;
-    }
-    .ring-pink-500 {
-        --tw-ring-opacity: 1;
-        --tw-ring-color: rgb(236 72 153 / var(--tw-ring-opacity));
-    }
-    .ring-1 {
-        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    .country-select-inner, .country-select-item-inner {
+        display: inline-flex;
+        align-items: center;
+        text-align: left;
     }
 
-    .flag {
-        background: url(https://cdn.jsdelivr.net/npm/svelte-tel-input@3.0.1/assets/flags_responsive.png) no-repeat;
-        background-size: 100%;
+    .country-select-inner span, .country-select-item span {
+        flex-shrink: 0;
+        margin-right: 0.75rem;
     }
+
+    .country-select-item {
+        display: inline-flex;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* class for active item in country dropdown selector */
+    .country-active {
+        color: red;
+    }
+
+    .input-invalid {
+        border-style: solid;
+        border-color: red;
+    }
+
+    .input-valid{
+        color: blue;
+    }
+
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+
+
+/*  flags  */
     span.flag {
         width: 28px;
         height: 19px;
@@ -463,6 +301,7 @@
         width: 30px;
     }
     .flag {
+        background: url(https://cdn.jsdelivr.net/npm/svelte-tel-input@3.0.1/assets/flags_responsive.png) no-repeat;
         background-size: 100%;
     }
     .flag-ad {
