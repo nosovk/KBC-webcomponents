@@ -33,7 +33,7 @@
         isOpen = !isOpen;
     };
 
-    const closeDropdown = (e) => {
+    const closeDropdown = (e?) => {
         if (isOpen) {
             e?.preventDefault();
             isOpen = false;
