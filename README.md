@@ -76,7 +76,7 @@ Here's an example:
 <script>
   import { get_current_component } from "svelte/internal";
   const component = get_current_component();
-  
+
   // example function for dispatching events
   const dispatchEvent = (name, detail) =>
     component.dispatchEvent(new CustomEvent(name, { detail }));
@@ -96,7 +96,7 @@ Then you also need to replace the content of `packages/lib/index.ts` with:
 
 ```js
 export default () => {
-  import('./MyComponent.wc.svelte');
+  import("./MyComponent.wc.svelte");
   // Import each of your component this way
 };
 ```
@@ -109,7 +109,6 @@ As you changed the way components are exported, you also need to replace the `im
 
 While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
 
-
 ## Why is HMR not preserving my local component state?
 
 HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#svelte-hmr).
@@ -119,6 +118,6 @@ If you have state that's important to retain within a component, consider creati
 ```ts
 // store.ts
 // An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+import { writable } from "svelte/store";
+export default writable(0);
 ```

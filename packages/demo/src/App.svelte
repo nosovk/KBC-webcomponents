@@ -1,16 +1,15 @@
 <script lang="ts">
-  import '../../lib';
+  import "../../lib";
   let value = 333;
   let element;
 </script>
 
 <main>
   <h1>KBC webcomponents!</h1>
-  <p></p>
+  <p />
 
   <p class="container">
-    <kbc-datepicker bind:this={element} id="ttt">
-    </kbc-datepicker>
+    <kbc-datepicker bind:this={element} id="ttt" />
   </p>
 </main>
 
