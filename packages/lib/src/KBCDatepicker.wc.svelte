@@ -4,6 +4,22 @@
     props: {
       value: { reflect: true, type: "String", attribute: "value" },
       valid: { reflect: true, type: "Boolean", attribute: "valid" },
+      selectedCountry: {
+        reflect: true,
+        type: "String",
+        attribute: "selectedCountry",
+      },
+      searchPlaceholder: {
+        reflect: true,
+        type: "String",
+        attribute: "searchPlaceholder",
+      },
+      closeOnClick: {
+        reflect: true,
+        type: "Boolean",
+        attribute: "closeOnClick",
+      },
+      disabled: { reflect: true, type: "Boolean", attribute: "disabled" },
     },
   }}
 />
@@ -104,23 +120,9 @@
   const onChange = (selectedCountry) => {
     dispatch("change", { option: selectedCountry });
   };
-
-  // below code required for webcomponent integration
-  let ref: HTMLDivElement;
-  const updateParent = function (val) {
-    if (ref?.getRootNode()?.host) {
-      console.log("host", ref.getRootNode().host, valid);
-      ref.getRootNode().host.value = val;
-      ref.getRootNode().host.valid = valid;
-    }
-  };
-  $: updateParent(value);
 </script>
 
-<div
-  bind:this={ref}
-  class="phone-input-wrapper {valid ? `input-valid` : `input-invalid`}"
->
+<div class="phone-input-wrapper {valid ? `input-valid` : `input-invalid`}">
   <div
     class="country-select-wrapper"
     use:clickOutsideAction={closeOnClickOutside}
