@@ -29,8 +29,7 @@
   import {
     TelInput,
     normalizedCountries,
-    isSelected,
-    clickOutsideAction,
+    isSelected
   } from "svelte-tel-input";
   import "svelte-tel-input/styles/flags.css";
 
@@ -125,7 +124,6 @@
 <div class="phone-input-wrapper {valid ? `input-valid` : `input-invalid`}">
   <div
     class="country-select-wrapper"
-    use:clickOutsideAction={closeOnClickOutside}
   >
     <button
       id="countries-button"
