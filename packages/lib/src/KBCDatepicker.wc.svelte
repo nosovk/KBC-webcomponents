@@ -176,6 +176,7 @@
         >
           <input
             aria-autocomplete="list"
+            class="search-input"
             type="text"
             bind:value={searchText}
             placeholder={searchPlaceholder}
@@ -211,6 +212,16 @@
 
   <TelInput
     id="tel-input"
+    class="tel-input"
+    style="
+        width: 100%;
+        border: none;
+        border-radius: 0px 5px 5px 0px;
+        font-size: 1em;
+        padding: 8px;
+        background-color: transparent;
+        color: gray;
+    "
     bind:country={selectedCountry}
     bind:detailedValue
     bind:value
@@ -221,10 +232,13 @@
 </div>
 
 <style>
+
   .phone-input-wrapper {
     position: relative;
     display: flex;
     border-radius: 8px;
+    align-items: center;
+    
   }
 
   .country-select-wrapper {
@@ -245,9 +259,14 @@
     text-align: center;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
+    background: transparent;
+    color: gray;
+    font-size: 1em;
+    height: 38px;
+    border: none;
   }
   .select-btn svg {
-    color: black;
+    color: grey;
     height: 1rem;
     width: 1rem;
   }
@@ -255,14 +274,19 @@
   .select-dropdown {
     position: absolute;
     max-width: fit-content;
-    background-color: white;
+    background-color: transparent ;
     border-radius: 4px;
   }
   .dropdown-inner {
     overflow-y: auto;
     max-height: 200px;
+    margin-top: 40px;
   }
 
+  .search-input {
+    width: 100%;
+    height: 30px;
+  }
   .country-select-inner,
   .country-select-item-inner {
     display: inline-flex;
@@ -288,16 +312,17 @@
 
   /* class for active item in country dropdown selector */
   .country-active {
-    color: red;
+    color: #b83400;
   }
 
   .input-invalid {
     border-style: solid;
-    border-color: red;
+    border-color: #b83400;
   }
 
   .input-valid {
     color: blue;
+    border: 1px solid #bb8e62;
   }
 
   .rotate-180 {
