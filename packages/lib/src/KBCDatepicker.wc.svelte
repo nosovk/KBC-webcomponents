@@ -37,12 +37,12 @@
   export let closeOnClick = true;
   export let disabled = false;
   export let detailedValue = null;
-  export let value = "";
+  export let value = "+442071838750";
   export let searchPlaceholder = "Search";
 
   let searchText = "";
   let isOpen = false;
-  export let selectedCountry = "";
+  export let selectedCountry = "GB";
   export let valid = true;
   export let options = { invalidateOnCountryChange: true };
 
