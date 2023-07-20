@@ -284,6 +284,20 @@
     border: 1px solid #bb8e62;
     border-radius: 5px;
   }
+
+  .dropdown-inner::-webkit-scrollbar {
+  width: 3px;
+  background: #080808;
+  border: solid #191919;
+  border-radius: 8px;
+}
+
+.dropdown-inner::-webkit-scrollbar-thumb {
+  background: #bb8e62;
+  border-radius: 5px;
+  width: 4px;
+  height: 20px;
+}
   
   .search-input {
     width: 98%;
