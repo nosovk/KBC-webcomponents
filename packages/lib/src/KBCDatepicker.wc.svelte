@@ -281,11 +281,15 @@
     overflow-y: auto;
     max-height: 200px;
     margin-top: 40px;
+    border: 1px solid #bb8e62;
+    border-radius: 5px;
   }
 
   .search-input {
-    width: 100%;
+    width: 98%;
     height: 30px;
+    background: #121212;
+    border: none;
   }
   .country-select-inner,
   .country-select-item-inner {
