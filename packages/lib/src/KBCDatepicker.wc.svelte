@@ -95,7 +95,7 @@
 
    getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
       if (geoData) {
-        const geo = geoData.value?.country_code;
+        const geo = geoData.country_code;
         selectedCountry = geo;
         console.log(geo);
         value = '';
