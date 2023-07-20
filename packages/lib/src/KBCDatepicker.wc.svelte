@@ -46,15 +46,83 @@
   export let valid = true;
   export let options = { invalidateOnCountryChange: false };
 
-  fetch('https://ipapi.co/json/')
-  .then(response => response.json())
-  .then(data => {
-    const countryIso2 = data.country_code;
-    selectedCountry = countryIso2;
-    value = '';
-    console.log('Coutry:', countryIso2);
-  })
-  .catch(error => console.error('Error', error));
+
+  const DOMAIN_FULLNAME = document.location.host,
+        BASE_URL = `https://www.${DOMAIN_FULLNAME.replace(/^[^.]*\.(?=\w+\.\w+$)/, '')}`,
+        countriesUrl = `${BASE_URL}/api/info/countries`,
+        geoDataUrl = `${BASE_URL}/api/current_ip`;
+
+
+  function getAPIFetchInitObject() {
+    return {
+      credentials: "include",
+      headers: {
+        accept: "application/vnd.softswiss.v1+json",
+        "accept-language": `EN, en;q=0.9`,
+        "cache-control": "no-cache",
+        pragma: "no-cache",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+      },
+      referrer: `${BASE_URL}`,
+      referrerPolicy: "strict-origin-when-cross-origin",
+      body: null,
+      method: "GET",
+      mode: "cors",
+    };
+  }
+  function getFetch(url, init) {
+    return fetch(url, init).then(function (res) {
+      return res.json();
+    });
+  }
+
+      
+  // function handleCountryField() {
+  //   Promise.allSettled([
+  //     getFetch(countriesUrl, getAPIFetchInitObject()),
+  //     getFetch(geoDataUrl, getAPIFetchInitObject()),
+  //   ]).then(([countries, geoData]) => {
+  //     if (countries.status === "fulfilled") {
+  //       const geo = geoData.value?.country_code;
+  //       setCountries(countries.value, geo);
+  //     } else {
+  //       (() => (geoData.reason ? console.error(geoData.reason) : null))();
+  //       console.error(countries.reason);
+  //     }
+  //   });
+  // }
+
+   getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
+      if (geoData) {
+        const geo = geoData.value?.country_code;
+        selectedCountry = geo;
+        console.log(geo);
+        value = '';
+      } else {
+        (() => (geoData.reason ? console.error(geoData.reason) : null))();
+        console.error(geoData.reason);
+      }
+    });
+
+  // fetch('https://ipapi.co/json/')
+  // .then(response => response.json())
+  // .then(data => {
+  //   const countryIso2 = data.country_code;
+  //   selectedCountry = countryIso2;
+  //   value = '';
+  //   console.log('Coutry:', countryIso2);
+  // })
+  // .catch(error => console.error('Error', error));
+  // fetch('https://ipapi.co/json/')
+  // .then(response => response.json())
+  // .then(data => {
+  //   const countryIso2 = data.country_code;
+  //   selectedCountry = countryIso2;
+  //   value = '';
+  //   console.log('Coutry:', countryIso2);
+  // })
+  // .catch(error => console.error('Error', error));
 
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
