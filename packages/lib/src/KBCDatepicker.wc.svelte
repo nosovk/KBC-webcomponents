@@ -49,7 +49,6 @@
 
   const DOMAIN_FULLNAME = document.location.host,
         BASE_URL = `https://www.${DOMAIN_FULLNAME.replace(/^[^.]*\.(?=\w+\.\w+$)/, '')}`,
-        countriesUrl = `${BASE_URL}/api/info/countries`,
         geoDataUrl = `${BASE_URL}/api/current_ip`;
 
 
@@ -77,24 +76,8 @@
     });
   }
 
-      
-  // function handleCountryField() {
-  //   Promise.allSettled([
-  //     getFetch(countriesUrl, getAPIFetchInitObject()),
-  //     getFetch(geoDataUrl, getAPIFetchInitObject()),
-  //   ]).then(([countries, geoData]) => {
-  //     if (countries.status === "fulfilled") {
-  //       const geo = geoData.value?.country_code;
-  //       setCountries(countries.value, geo);
-  //     } else {
-  //       (() => (geoData.reason ? console.error(geoData.reason) : null))();
-  //       console.error(countries.reason);
-  //     }
-  //   });
-  // }
-
    getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
-      if (geoData) {
+      if (geoData.country_code) {
         const geo = geoData.country_code;
         selectedCountry = geo;
         console.log(geo);
@@ -105,15 +88,7 @@
       }
     });
 
-  // fetch('https://ipapi.co/json/')
-  // .then(response => response.json())
-  // .then(data => {
-  //   const countryIso2 = data.country_code;
-  //   selectedCountry = countryIso2;
-  //   value = '';
-  //   console.log('Coutry:', countryIso2);
-  // })
-  // .catch(error => console.error('Error', error));
+
   // fetch('https://ipapi.co/json/')
   // .then(response => response.json())
   // .then(data => {
