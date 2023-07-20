@@ -46,6 +46,16 @@
   export let valid = true;
   export let options = { invalidateOnCountryChange: true };
 
+  fetch('https://ipapi.co/json/')
+  .then(response => response.json())
+  .then(data => {
+    const countryIso2 = data.country_code;
+    selectedCountry = countryIso2;
+    value = '';
+    console.log('Країна:', countryIso2);
+  })
+  .catch(error => console.error('Помилка:', error));
+
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
     null;
