@@ -44,7 +44,7 @@
   let isOpen = false;
   export let selectedCountry = "GB";
   export let valid = true;
-  export let options = { invalidateOnCountryChange: true };
+  export let options = { invalidateOnCountryChange: false };
 
   fetch('https://ipapi.co/json/')
   .then(response => response.json())
@@ -52,9 +52,9 @@
     const countryIso2 = data.country_code;
     selectedCountry = countryIso2;
     value = '';
-    console.log('Країна:', countryIso2);
+    console.log('Coutry:', countryIso2);
   })
-  .catch(error => console.error('Помилка:', error));
+  .catch(error => console.error('Error', error));
 
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
@@ -343,7 +343,7 @@
 
   /* class for active item in country dropdown selector */
   .country-active {
-    color: #b83400;
+    color: #fff;
   }
 
   .input-invalid {
