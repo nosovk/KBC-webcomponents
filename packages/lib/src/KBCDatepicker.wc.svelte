@@ -236,7 +236,7 @@
   .phone-input-wrapper {
     position: relative;
     display: flex;
-    border-radius: 8px;
+    border-radius: 5px;
     align-items: center;
     
   }
@@ -308,6 +308,9 @@
     padding-bottom: 0.5rem;
     overflow: hidden;
     width: 100%;
+    background: #121212;
+    color: gray;
+    border: none;
   }
 
   /* class for active item in country dropdown selector */
