@@ -284,7 +284,7 @@
     border: 1px solid #bb8e62;
     border-radius: 5px;
   }
-
+  
   .search-input {
     width: 98%;
     height: 30px;
