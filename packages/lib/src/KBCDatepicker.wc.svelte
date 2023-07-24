@@ -81,7 +81,7 @@
         const geo = geoData.country_code;
         selectedCountry = geo;
         console.log(geo);
-        value = '';
+        value = ' ';
       } else {
         (() => (geoData.reason ? console.error(geoData.reason) : null))();
         console.error(geoData.reason);
