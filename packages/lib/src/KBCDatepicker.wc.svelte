@@ -37,7 +37,7 @@
   export let closeOnClick = true;
   export let disabled = false;
   export let detailedValue = null;
-  export let value = "+442071838750";
+  export let value = " ";
   export let searchPlaceholder = "Search";
 
   let searchText = "";
@@ -81,7 +81,6 @@
         const geo = geoData.country_code;
         selectedCountry = geo;
         console.log(geo);
-        value = ' ';
       } else {
         (() => (geoData.reason ? console.error(geoData.reason) : null))();
         console.error(geoData.reason);
