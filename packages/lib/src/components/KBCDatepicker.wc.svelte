@@ -25,6 +25,7 @@
 />
 
 <script lang="ts">
+  import {getAPIFetchInitObject, getFetch, BASE_URL} from "../services/getSoftSwissAPI"
   import { createEventDispatcher } from "svelte";
   import {
     TelInput,
@@ -46,35 +47,8 @@
   export let valid = true;
   export let options = { invalidateOnCountryChange: false };
 
-
-  const DOMAIN_FULLNAME = document.location.host,
-        BASE_URL = `https://www.${DOMAIN_FULLNAME.replace(/^[^.]*\.(?=\w+\.\w+$)/, '')}`,
-        geoDataUrl = `${BASE_URL}/api/current_ip`;
-
-
-  function getAPIFetchInitObject() {
-    return {
-      credentials: "include",
-      headers: {
-        accept: "application/vnd.softswiss.v1+json",
-        "accept-language": `EN, en;q=0.9`,
-        "cache-control": "no-cache",
-        pragma: "no-cache",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-      },
-      referrer: `${BASE_URL}`,
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: null,
-      method: "GET",
-      mode: "cors",
-    };
-  }
-  function getFetch(url, init) {
-    return fetch(url, init).then(function (res) {
-      return res.json();
-    });
-  }
+/*========= change country at component by user agent ip with SoftSwiss API start ==========*/
+  const geoDataUrl = `${BASE_URL}/api/current_ip`;
 
    getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
       if (geoData.country_code) {
@@ -86,7 +60,7 @@
         console.error(geoData.reason);
       }
     });
-
+/*========= change country at component by user agent ip with SoftSwiss API end ==========*/
 
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
