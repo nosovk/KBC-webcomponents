@@ -88,16 +88,6 @@
     });
 
 
-  // fetch('https://ipapi.co/json/')
-  // .then(response => response.json())
-  // .then(data => {
-  //   const countryIso2 = data.country_code;
-  //   selectedCountry = countryIso2;
-  //   value = '';
-  //   console.log('Coutry:', countryIso2);
-  // })
-  // .catch(error => console.error('Error', error));
-
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
     null;
@@ -265,15 +255,7 @@
   <TelInput
     id="tel-input"
     class="tel-input"
-    style="
-        width: 100%;
-        border: none;
-        border-radius: 0px 5px 5px 0px;
-        font-size: 1em;
-        padding: 8px;
-        background-color: transparent;
-        color: gray;
-    "
+    style="width: 100%;border: none;border-radius: 0px 5px 5px 0px;font-size: 1em;padding: 8px;background-color: transparent;color: gray;"
     bind:country={selectedCountry}
     bind:detailedValue
     bind:value
