@@ -229,7 +229,6 @@
   <TelInput
     id="tel-input"
     class="tel-input"
-    style="width: 100%;border: none;border-radius: 0px 5px 5px 0px;font-size: 1em;padding: 8px;background-color: transparent;color: gray;"
     bind:country={selectedCountry}
     bind:detailedValue
     bind:value
@@ -240,6 +239,10 @@
 </div>
 
 <style>
+
+  :global(input) {
+    width: 100%;border: none;border-radius: 0px 5px 5px 0px;font-size: 1em;padding: 8px;background-color: transparent;color: gray;
+  }
 
   .phone-input-wrapper {
     position: relative;
