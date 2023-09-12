@@ -266,7 +266,7 @@
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
     text-align: center;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
