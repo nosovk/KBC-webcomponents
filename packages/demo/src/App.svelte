@@ -10,7 +10,7 @@
 
   <p class="container">
     <kbc-datepicker bind:this={element} id="ttt" />
-    <kbc-datepicker-new bind:this={element} id="sss" valid='true' placeholder="Phone"/>
+    <kbc-datepicker-new bind:this={element} id="sss" valid='true'/>
   </p>
 </main>
 
