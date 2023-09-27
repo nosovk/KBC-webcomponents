@@ -247,13 +247,13 @@
   }
   :global(input#tel-input) {
     width: 100%;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 10px;
     font-size: 1em;
     padding: 8px;
     background-color: #1e1f25;
     color: #fff;
     border: 1px solid #1e1f25;
-    height: 40px;
+    height: 38px;
     box-sizing: border-box;
   }
   :global(input#tel-input.input-valid) {
@@ -271,7 +271,7 @@
     border: 1px solid #1e1f25;
     width: 125px;
     background-color: #1E1F25;
-    height: 40px;
+    height: 38px;
   }
   .error-input-wrapper {
     border-radius: 5px;
