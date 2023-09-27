@@ -4,6 +4,7 @@
     props: {
       value: { reflect: true, type: "String", attribute: "value" },
       valid: { reflect: true, type: "Boolean", attribute: "valid" },
+      placeholder: { reflect: true, type: "String", attribute: "placeholder" },
       selectedCountry: {
         reflect: true,
         type: "String",
@@ -40,6 +41,7 @@
   export let detailedValue = null;
   export let value = " ";
   export let searchPlaceholder = "Search";
+  export let placeholder = "Phone";
 
   let searchText = "";
   let isOpen = false;
@@ -242,6 +244,7 @@
       bind:detailedValue
       bind:value
       bind:valid
+      placeholder={placeholder}
       {options}
       required={true}
     />
@@ -283,6 +286,7 @@
     width: 125px;
     background-color: #1E1F25;
     height: 38px;
+    color: #fff;
   }
   .error-input-wrapper {
     border-radius: 5px;
