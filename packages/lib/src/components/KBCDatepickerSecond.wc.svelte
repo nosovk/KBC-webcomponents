@@ -25,13 +25,13 @@
 />
 
 <script lang="ts">
-  import {getAPIFetchInitObject, getFetch, BASE_URL} from "../services/getSoftSwissAPI"
-  import { createEventDispatcher } from "svelte";
   import {
-    TelInput,
-    normalizedCountries,
-    isSelected
-  } from "svelte-tel-input";
+    getAPIFetchInitObject,
+    getFetch,
+    BASE_URL,
+  } from "../services/getSoftSwissAPI";
+  import { createEventDispatcher } from "svelte";
+  import { TelInput, normalizedCountries, isSelected } from "svelte-tel-input";
   import "svelte-tel-input/styles/flags.css";
 
   export let clickOutside = true;
@@ -47,20 +47,20 @@
   export let valid = true;
   export let options = { invalidateOnCountryChange: false };
 
-/*========= change country at component by user agent ip with SoftSwiss API start ==========*/
+  /*========= change country at component by user agent ip with SoftSwiss API start ==========*/
   const geoDataUrl = `${BASE_URL}/api/current_ip`;
 
-   getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
-      if (geoData.country_code) {
-        const geo = geoData.country_code;
-        selectedCountry = geo;
-        console.log(geo);
-      } else {
-        (() => (geoData.reason ? console.error(geoData.reason) : null))();
-        console.error(geoData.reason);
-      }
-    });
-/*========= change country at component by user agent ip with SoftSwiss API end ==========*/
+  getFetch(geoDataUrl, getAPIFetchInitObject()).then((geoData) => {
+    if (geoData.country_code) {
+      const geo = geoData.country_code;
+      selectedCountry = geo;
+      console.log(geo);
+    } else {
+      (() => (geoData.reason ? console.error(geoData.reason) : null))();
+      console.error(geoData.reason);
+    }
+  });
+  /*========= change country at component by user agent ip with SoftSwiss API end ==========*/
 
   $: selectedCountryDialCode =
     normalizedCountries.find((el) => el.iso2 === selectedCountry)?.dialCode ||
@@ -137,10 +137,8 @@
   };
 </script>
 
-<div class="phone-input-wrapper {valid ? `input-valid` : `input-invalid`}">
-  <div
-    class="country-select-wrapper"
-  >
+<div class="phone-input-wrapper">
+  <div class="country-select-wrapper">
     <button
       id="countries-button"
       data-dropdown-toggle="dropdown-countries"
@@ -172,8 +170,11 @@
           d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
           clip-rule="evenodd"
         />
+
+          
       </svg>
     </button>
+
     {#if isOpen}
       <div
         id="dropdown-countries"
@@ -225,37 +226,44 @@
       </div>
     {/if}
   </div>
-
-  <TelInput
-    id="tel-input"
-    class="tel-input"
-    bind:country={selectedCountry}
-    bind:detailedValue
-    bind:value
-    bind:valid
-    {options}
-    required={true}
-  />
+  <div class="error-input-wrapper {valid ? `input-valid` : `input-invalid`}">
+    <TelInput
+      id="tel-input"
+      class="tel-input"
+      bind:country={selectedCountry}
+      bind:detailedValue
+      bind:value
+      bind:valid
+      {options}
+      required={true}
+    />
+  </div>
 </div>
 
 <style>
-
-  :global(input) {
-    width: 100%;border: none;border-radius: 5px 5px 5px 5px;font-size: 1em;padding: 8px;background-color: transparent;color: red;border: 1px solid red;
+  :global(input#tel-input) {
+    /* width: 100%; */
+    border-radius: 5px 5px 5px 5px;
+    font-size: 1em;
+    padding: 8px;
+    background-color: #1e1f25;
+    color: #fff;
+    border: #1e1f25;
   }
   #countries-button {
     margin-right: 5px;
-    border: 1px solid red;
+    border-color: transparent;
     border-radius: 5px;
+    width: 125px;
+    background-color: #1E1F25;
   }
-  #tel-input {
-    border-left: 1px solid red;
-    border-radius: 5px 5px 5px 5px
+  .error-input-wrapper {
+    border-radius: 5px;
   }
   .phone-input-wrapper,
   .input-invalid {
-    border-style: none;
-    border-color: transparent !important;
+    /* border-style: none;
+    border-color: transparent !important; */
   }
 
   .phone-input-wrapper {
@@ -263,7 +271,6 @@
     display: flex;
     border-radius: 5px;
     align-items: center;
-    
   }
 
   .country-select-wrapper {
@@ -291,41 +298,42 @@
     border: none;
   }
   .select-btn svg {
-    color: grey;
-    height: 1rem;
-    width: 1rem;
+    color: #BD8D5F;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 
   .select-dropdown {
     position: absolute;
     max-width: fit-content;
-    background-color: transparent ;
+    background-color: transparent;
     border-radius: 4px;
   }
   .dropdown-inner {
     overflow-y: auto;
     max-height: 200px;
     margin-top: 40px;
-    border: 1px solid #bb8e62;
+    border: none;
     border-radius: 5px;
+    width: 125px;
   }
 
   .dropdown-inner::-webkit-scrollbar {
-  width: 3px;
-  background: #080808;
-  border: solid #191919;
-  border-radius: 8px;
-}
+    width: 3px;
+    background: #080808;
+    border: solid #191919;
+    border-radius: 8px;
+  }
 
-.dropdown-inner::-webkit-scrollbar-thumb {
-  background: #bb8e62;
-  border-radius: 5px;
-  width: 4px;
-  height: 20px;
-}
-  
+  .dropdown-inner::-webkit-scrollbar-thumb {
+    background: #434553;
+    border-radius: 5px;
+    width: 8px !important;
+    height: 40px;
+  }
+
   .search-input {
-    width: 98%;
+    width: calc(100% - 4px) !important;
     height: 30px;
     background: #121212;
     border: none;
@@ -335,12 +343,18 @@
     display: inline-flex;
     align-items: center;
     text-align: left;
+    width: fit-content;
+    font-size: 16px;
   }
 
   .country-select-inner span,
   .country-select-item span {
     flex-shrink: 0;
     margin-right: 0.75rem;
+  }
+
+  .country-select-item span:nth-child(2) {
+    display: none;
   }
 
   .country-select-item {
@@ -368,7 +382,8 @@
 
   .input-valid {
     color: blue;
-    border: 1px solid #bb8e62;
+    border-color: transparent;
+
   }
 
   .rotate-180 {
@@ -377,8 +392,8 @@
 
   /*  flags  */
   span.flag {
-    width: 28px;
-    height: 19px;
+    width: 22px;
+    height: 15px;
     display: inline-block;
   }
   img.flag {
