@@ -204,6 +204,7 @@
             class="search-input"
             type="text"
             bind:value={searchText}
+            placeholder={searchPlaceholder}
           />
           {#each sortCountries(normalizedCountries, searchText) as country (country.id)}
             {@const isActive = isSelected(country.iso2, selectedCountry)}
@@ -241,7 +242,6 @@
       bind:detailedValue
       bind:value
       bind:valid
-      placeholder={placeholder}
       {options}
       required={true}
     />
