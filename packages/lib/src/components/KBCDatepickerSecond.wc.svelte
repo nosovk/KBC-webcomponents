@@ -241,14 +241,19 @@
 </div>
 
 <style>
+  :global(*) {
+    box-sizing: border-box;
+    outline: none;
+  }
   :global(input#tel-input) {
-    /* width: 100%; */
+    width: 100%;
     border-radius: 5px 5px 5px 5px;
     font-size: 1em;
     padding: 8px;
     background-color: #1e1f25;
     color: #fff;
     border: #1e1f25;
+
   }
   #countries-button {
     margin-right: 5px;
@@ -284,10 +289,6 @@
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    padding-left: 1rem;
-    padding-right: 0.5rem;
     text-align: center;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -312,16 +313,16 @@
   .dropdown-inner {
     overflow-y: auto;
     max-height: 200px;
-    margin-top: 40px;
+    margin-top: 45px;
     border: none;
-    border-radius: 5px;
-    width: 125px;
+    border-radius: 10px;
+    width: 111px;
   }
 
   .dropdown-inner::-webkit-scrollbar {
-    width: 3px;
-    background: #080808;
-    border: solid #191919;
+    width: 2px;
+    background: #1e1f25;
+    border: solid #1e1f25;
     border-radius: 8px;
   }
 
@@ -333,9 +334,9 @@
   }
 
   .search-input {
-    width: calc(100% - 4px) !important;
+    width: calc(100%) !important;
     height: 30px;
-    background: #121212;
+    background: #1e1f25;
     border: none;
   }
   .country-select-inner,
@@ -365,7 +366,8 @@
     padding-bottom: 0.5rem;
     overflow: hidden;
     width: 100%;
-    background: #121212;
+    background: #1e1f25;
+
     color: gray;
     border: none;
   }
