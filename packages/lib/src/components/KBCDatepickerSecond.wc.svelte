@@ -24,7 +24,7 @@
   }}
 />
 
-<script lang="ts">
+<script lang="ts"> 
   import {
     getAPIFetchInitObject,
     getFetch,
@@ -137,6 +137,14 @@
   };
 </script>
 
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+		rel="stylesheet"
+	/>
+</svelte:head>
 <div class="phone-input-wrapper">
   <div class="country-select-wrapper">
     <button
@@ -244,6 +252,8 @@
   :global(*) {
     box-sizing: border-box;
     outline: none;
+    font-family: Roboto Condensed;
+
   }
   :global(input#tel-input) {
     width: 100%;
@@ -251,17 +261,18 @@
     font-size: 1em;
     padding: 8px;
     background-color: #1e1f25;
-    color: #fff;
+    color: #f8f8f8;
     border: 1px solid #1e1f25;
     height: 38px;
     box-sizing: border-box;
+    font-family: Roboto Condensed;
   }
   :global(input#tel-input.input-valid) {
     color: #fff;
     border: 1px solid transparent;
   }
   :global(input#tel-input.input-invalid) {
-    color: #fff;
+    color: #f8f8f8;
     border: 1px solid #b83400;
   }
 
