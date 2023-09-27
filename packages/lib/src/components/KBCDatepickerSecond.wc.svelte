@@ -328,8 +328,8 @@
 
   .dropdown-inner::-webkit-scrollbar {
     width: 2px;
-    background: #1e1f25;
-    border: solid #1e1f25;
+    background: #0F0C11;
+    border: solid #0F0C11;
     border-radius: 8px;
   }
 
