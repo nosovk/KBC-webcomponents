@@ -226,10 +226,10 @@
       </div>
     {/if}
   </div>
-  <div class="error-input-wrapper {valid ? `input-valid` : `input-invalid`}">
+  <!-- <div class="error-input-wrapper {valid ? `input-valid` : `input-invalid`}"> -->
     <TelInput
       id="tel-input"
-      class="tel-input"
+      class="tel-input {valid ? `input-valid` : `input-invalid`}"
       bind:country={selectedCountry}
       bind:detailedValue
       bind:value
@@ -237,7 +237,7 @@
       {options}
       required={true}
     />
-  </div>
+  <!-- </div> -->
 </div>
 
 <style>
@@ -252,24 +252,31 @@
     padding: 8px;
     background-color: #1e1f25;
     color: #fff;
-    border: #1e1f25;
-
+    border: 1px solid #1e1f25;
+    height: 40px;
+    box-sizing: border-box;
   }
+  :global(input#tel-input.input-valid) {
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  :global(input#tel-input.input-invalid) {
+    color: #fff;
+    border: 1px solid #b83400;
+  }
+
   #countries-button {
     margin-right: 5px;
-    border-color: transparent;
     border-radius: 5px;
+    border: 1px solid #1e1f25;
     width: 125px;
     background-color: #1E1F25;
+    height: 40px;
   }
   .error-input-wrapper {
     border-radius: 5px;
   }
-  .phone-input-wrapper,
-  .input-invalid {
-    /* border-style: none;
-    border-color: transparent !important; */
-  }
+
 
   .phone-input-wrapper {
     position: relative;
@@ -377,16 +384,6 @@
     color: #fff;
   }
 
-  .input-invalid {
-    border-style: solid;
-    border-color: #b83400;
-  }
-
-  .input-valid {
-    color: blue;
-    border-color: transparent;
-
-  }
 
   .rotate-180 {
     transform: rotate(180deg);
