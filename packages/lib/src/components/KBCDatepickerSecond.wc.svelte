@@ -267,7 +267,7 @@
 
   #countries-button {
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #1e1f25;
     width: 125px;
     background-color: #1E1F25;
