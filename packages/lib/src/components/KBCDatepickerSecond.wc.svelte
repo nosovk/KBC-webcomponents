@@ -360,7 +360,9 @@
   }
   
   button.country-select-item {
-    padding-top: 0;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    padding-left: 15px;
   }
   .country-select-inner,
   .country-select-item-inner {
@@ -377,9 +379,14 @@
     flex-shrink: 0;
     margin-right: 0.75rem;
   }
-
+  .country-select-item span:nth-child(1) {
+    margin-right: 4px;
+  }
   .country-select-item span:nth-child(2) {
     display: none;
+  }
+  .country-select-item span:nth-child(3) {
+    font-size: 14px;
   }
 
   .country-select-item {
