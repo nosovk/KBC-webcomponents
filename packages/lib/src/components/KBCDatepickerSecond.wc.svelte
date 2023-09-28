@@ -258,7 +258,7 @@
   :global(input#tel-input) {
     width: 100%;
     border-radius: 10px;
-    font-size: 1em;
+    font-size: 16px;
     padding: 8px;
     background-color: #1e1f25;
     color: #f8f8f8;
