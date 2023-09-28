@@ -280,7 +280,7 @@
     margin-right: 5px;
     border-radius: 10px;
     border: 1px solid #1e1f25;
-    width: 125px;
+    width: 103px;
     background-color: #1E1F25;
     height: 38px;
     color: #fff;
@@ -335,7 +335,7 @@
     margin-top: 45px;
     border: none;
     border-radius: 10px;
-    width: 111px;
+    width: 105px;
   }
 
   .dropdown-inner::-webkit-scrollbar {
@@ -358,6 +358,10 @@
     background: #1e1f25;
     border: none;
   }
+  
+  button.country-select-item {
+    padding-top: 0;
+  }
   .country-select-inner,
   .country-select-item-inner {
     display: inline-flex;
@@ -365,6 +369,7 @@
     text-align: left;
     width: fit-content;
     font-size: 16px;
+    color: #fff;
   }
 
   .country-select-inner span,
