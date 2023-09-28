@@ -321,6 +321,7 @@
     color: #BD8D5F;
     height: 1.5rem;
     width: 1.5rem;
+    scale: 130%;
   }
 
   .select-dropdown {
