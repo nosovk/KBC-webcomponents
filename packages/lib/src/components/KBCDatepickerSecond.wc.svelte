@@ -336,6 +336,7 @@
     border: none;
     border-radius: 10px;
     width: 105px;
+    background-color: #1E1F25;
   }
 
   .dropdown-inner::-webkit-scrollbar {
@@ -360,8 +361,8 @@
   }
   
   button.country-select-item {
-    padding-top: 2px;
-    padding-bottom: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     padding-left: 15px;
   }
   .country-select-inner,
