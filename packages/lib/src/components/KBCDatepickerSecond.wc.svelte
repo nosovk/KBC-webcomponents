@@ -277,7 +277,7 @@
   }
 
   #countries-button {
-    margin-right: 5px;
+    margin-right: 15px;
     border-radius: 10px;
     border: 1px solid #1e1f25;
     width: 103px;
